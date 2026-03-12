@@ -1,0 +1,392 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checklist Jadwal Latihan — Push Up & Sit Up 10×5</title>
+  <style>
+    :root{
+      --bg:#f7f9fc;
+      --card:#ffffff;
+      --accent:#2563eb;
+      --muted:#6b7280;
+      --success:#10b981;
+    }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; margin:16px; background:var(--bg); color:#111;}
+    .container{max-width:900px;margin:0 auto;}
+    header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+    h1{font-size:1.25rem;margin:0;}
+    p.lead{margin:0;color:var(--muted);font-size:0.95rem;}
+    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(15,23,42,0.06);}    
+    table{width:100%;border-collapse:collapse;margin-top:12px;}
+    th,td{padding:10px 8px;text-align:left;border-bottom:1px solid #eef2f7;font-size:0.95rem;}
+    th{background:transparent;color:var(--muted);font-weight:600;}
+    .center{text-align:center;}
+    .small{font-size:0.85rem;color:var(--muted);}
+    .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+    button{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;}
+    button.ghost{background:transparent;color:var(--accent);border:1px solid #dbeafe;}
+    button.warn{background:#ef4444;}
+    .progress-wrap{margin-top:10px;}
+    .progress{height:12px;background:#e6eefc;border-radius:999px;overflow:hidden;}
+    .bar{height:100%;width:0;background:var(--success);transition:width .25s ease;}
+    .stats{display:flex;gap:12px;align-items:center;margin-top:8px;font-size:0.95rem;}
+    .history{margin-top:16px;border-top:1px dashed #e6eefc;padding-top:12px}
+    .history table{width:100%;}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:600;font-size:0.85rem}
+    .tag.sukses{background:#e6fff4;color:#047857}
+    .tag.gagal{background:#fff0f0;color:#b91c1c}
+    @media (max-width:640px){
+      th,td{padding:8px 6px;font-size:0.9rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Checklist Latihan — Push Up & Sit Up (10×5)</h1>
+        <p class="lead">Centang setiap sesi yang selesai. Data tersimpan otomatis di browser. Simpan snapshot mingguan dan unduh datanya.</p>
+      </div>
+    </header><div class="card">
+  <div class="progress-wrap">
+    <div class="progress" aria-hidden>
+      <div id="progressBar" class="bar" style="width:0%"></div>
+    </div>
+    <div class="stats">
+      <div id="progressText">0 dari 14 sesi selesai</div>
+      <div class="small"> (7 hari × 2 latihan/hari)</div>
+    </div>
+  </div>
+
+  <table aria-label="Jadwal latihan">
+    <thead>
+      <tr>
+        <th>Hari</th>
+        <th class="center">Push Up<br><span class="small">10×5</span></th>
+        <th class="center">Sit Up<br><span class="small">10×5</span></th>
+        <th>Catatan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Senin</td>
+        <td class="center"><input type="checkbox" id="push-senin"></td>
+        <td class="center"><input type="checkbox" id="sit-senin"></td>
+        <td><input type="text" id="note-senin" placeholder="Catatan (opsional)" style="width:100%;padding:6px;border-radius:6px;border:1px solid #e6eefc"></td>
+      </tr>
+      <tr>
+        <td>Selasa</td>
+        <td class="center"><input type="checkbox" id="push-selasa"></td>
+        <td class="center"><input type="checkbox" id="sit-selasa"></td>
+        <td><input type="text" id="note-selasa" placeholder="Catatan (opsional)" style="width:100%;padding:6px;border-radius:6px;border:1px solid #e6eefc"></td>
+      </tr>
+      <tr>
+        <td>Rabu</td>
+        <td class="center"><input type="checkbox" id="push-rabu"></td>
+        <td class="center"><input type="checkbox" id="sit-rabu"></td>
+        <td><input type="text" id="note-rabu" placeholder="Catatan (opsional)" style="width:100%;padding:6px;border-radius:6px;border:1px solid #e6eefc"></td>
+      </tr>
+      <tr>
+        <td>Kamis</td>
+        <td class="center"><input type="checkbox" id="push-kamis"></td>
+        <td class="center"><input type="checkbox" id="sit-kamis"></td>
+        <td><input type="text" id="note-kamis" placeholder="Catatan (opsional)" style="width:100%;padding:6px;border-radius:6px;border:1px solid #e6eefc"></td>
+      </tr>
+      <tr>
+        <td>Jumat</td>
+        <td class="center"><input type="checkbox" id="push-jumat"></td>
+        <td class="center"><input type="checkbox" id="sit-jumat"></td>
+        <td><input type="text" id="note-jumat" placeholder="Catatan (opsional)" style="width:100%;padding:6px;border-radius:6px;border:1px solid #e6eefc"></td>
+      </tr>
+      <tr>
+        <td>Sabtu</td>
+        <td class="center"><input type="checkbox" id="push-sabtu"></td>
+        <td class="center"><input type="checkbox" id="sit-sabtu"></td>
+        <td><input type="text" id="note-sabtu" placeholder="Catatan (opsional)" style="width:100%;padding:6px;border-radius:6px;border:1px solid #e6eefc"></td>
+      </tr>
+      <tr>
+        <td>Minggu</td>
+        <td class="center"><input type="checkbox" id="push-minggu"></td>
+        <td class="center"><input type="checkbox" id="sit-minggu"></td>
+        <td><input type="text" id="note-minggu" placeholder="Catatan (opsional)" style="width:100%;padding:6px;border-radius:6px;border:1px solid #e6eefc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <button id="clearBtn" class="ghost">Reset Minggu Ini</button>
+    <button id="saveWeekBtn">Simpan Minggu</button>
+    <button id="exportBtn">Ekspor CSV (Minggu Ini)</button>
+    <button id="copyBtn" class="ghost">Salin Ringkasan</button>
+    <button id="helpBtn" class="ghost">Cara Pakai</button>
+  </div>
+
+  <p class="small" style="margin-top:10px;color:var(--muted)">
+    Tips: centang setelah menyelesaikan 10×5 push up atau sit up. Gunakan tombol "Simpan Minggu" untuk menyimpan snapshot minggu ini ke daftar riwayat.
+  </p>
+
+  <div class="history card" id="historyWrap">
+    <h3 style="margin:0 0 10px 0">Riwayat Mingguan</h3>
+    <div id="weeksList">Belum ada data minggu tersimpan.</div>
+    <div style="margin-top:10px">
+      <button id="downloadAllBtn" class="ghost">Download Semua Minggu (CSV)</button>
+      <button id="clearAllWeeksBtn" class="ghost warn">Hapus Semua Riwayat</button>
+    </div>
+  </div>
+
+</div>
+
+  </div>  <script>
+    (function(){
+      const days = ["senin","selasa","rabu","kamis","jumat","sabtu","minggu"];
+      const items = days.flatMap(d => [`push-${d}`, `sit-${d}`]);
+      const noteIds = days.map(d => `note-${d}`);
+      const totalBoxes = items.length; // 14
+
+      function storageKey(id){ return 'workout-' + id; }
+
+      // ---------- state load/save for current week ----------
+      function loadState(){
+        items.forEach(id => {
+          const el = document.getElementById(id);
+          if(!el) return;
+          const val = localStorage.getItem(storageKey(id));
+          el.checked = val === '1';
+        });
+        noteIds.forEach(id => {
+          const el = document.getElementById(id);
+          if(!el) return;
+          const val = localStorage.getItem(storageKey(id));
+          if(val !== null) el.value = val;
+        });
+        updateProgress();
+      }
+
+      function saveState(id, checked){
+        localStorage.setItem(storageKey(id), checked ? '1' : '0');
+        updateProgress();
+      }
+      function saveNote(id, text){ localStorage.setItem(storageKey(id), text); }
+
+      function updateProgress(){
+        const done = document.querySelectorAll('input[type=checkbox]:checked').length;
+        const pct = Math.round((done / totalBoxes) * 100);
+        const bar = document.getElementById('progressBar');
+        const txt = document.getElementById('progressText');
+        bar.style.width = pct + '%';
+        txt.textContent = `${done} dari ${totalBoxes} sesi selesai (${pct}%)`;
+      }
+
+      // ---------- weekly snapshots (riwayat) ----------
+      const WEEKS_KEY = 'workout-weeks';
+
+      function loadWeeks(){
+        const raw = localStorage.getItem(WEEKS_KEY);
+        try{
+          return raw ? JSON.parse(raw) : [];
+        }catch(e){
+          console.error('Gagal parsing weeks', e);
+          return [];
+        }
+      }
+      function saveWeeks(weeks){ localStorage.setItem(WEEKS_KEY, JSON.stringify(weeks)); renderWeeks(); }
+
+      function getCurrentWeekData(){
+        const entries = days.map(d => {
+          return {
+            day: d,
+            push: localStorage.getItem(storageKey('push-'+d)) === '1',
+            sit: localStorage.getItem(storageKey('sit-'+d)) === '1',
+            note: localStorage.getItem(storageKey('note-'+d)) || ''
+          };
+        });
+        const done = entries.reduce((s,e)=> s + (e.push?1:0) + (e.sit?1:0), 0);
+        return { entries, done, total: totalBoxes };
+      }
+
+      function saveWeekSnapshot(){
+        const weeks = loadWeeks();
+        const weekNumber = weeks.length + 1;
+        const { entries, done, total } = getCurrentWeekData();
+        const status = done === total ? 'Sukses' : 'Gagal';
+        const rec = {
+          id: Date.now(),
+          week: weekNumber,
+          date: new Date().toISOString(),
+          done, total, status, entries
+        };
+        weeks.push(rec);
+        saveWeeks(weeks);
+        alert(`Minggu ${weekNumber} disimpan sebagai: ${status} (${done}/${total})`);
+      }
+
+      function renderWeeks(){
+        const weeks = loadWeeks();
+        const wrap = document.getElementById('weeksList');
+        if(!weeks || weeks.length === 0){ wrap.innerHTML = 'Belum ada data minggu tersimpan.'; return; }
+        // build table
+        let html = `<table><thead><tr><th>Minggu</th><th>Status</th><th>Selesai</th><th>Tanggal</th><th>Aksi</th></tr></thead><tbody>`;
+        weeks.slice().reverse().forEach(w => {
+          const date = new Date(w.date).toLocaleString();
+          const tagClass = w.status === 'Sukses' ? 'sukses' : 'gagal';
+          html += `<tr>
+            <td> Minggu ${w.week} </td>
+            <td><span class="tag ${tagClass}">${w.status}</span></td>
+            <td>${w.done}/${w.total}</td>
+            <td>${date}</td>
+            <td>
+              <button data-id="${w.id}" class="download-week">Download Data</button>
+              <button data-id="${w.id}" class="delete-week ghost">Hapus</button>
+            </td>
+          </tr>`;
+        });
+        html += `</tbody></table>`;
+        wrap.innerHTML = html;
+        // attach listeners
+        wrap.querySelectorAll('.download-week').forEach(btn => btn.addEventListener('click', (e)=>{
+          const id = Number(e.currentTarget.dataset.id); downloadWeek(id);
+        }));
+        wrap.querySelectorAll('.delete-week').forEach(btn => btn.addEventListener('click', (e)=>{
+          const id = Number(e.currentTarget.dataset.id); if(!confirm('Hapus data minggu ini?')) return; deleteWeek(id);
+        }));
+      }
+
+      function downloadWeek(id){
+        const weeks = loadWeeks();
+        const w = weeks.find(x => x.id === id);
+        if(!w) return alert('Data tidak ditemukan');
+        const header = ['Hari','PushUp(10x5)','SitUp(10x5)','Catatan'];
+        const rows = [header.join(',')];
+        w.entries.forEach(e => {
+          const push = e.push ? 'Selesai' : '';
+          const sit = e.sit ? 'Selesai' : '';
+          const note = (e.note || '').replace(/"/g,'""');
+          rows.push([capitalize(e.day), push, sit, `"${note}"`].join(','));
+        });
+        const csv = rows.join('\n');
+        const blob = new Blob([csv], {type:'text/csv'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `minggu_${w.week}_latihan.csv`;
+        document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      }
+
+      function deleteWeek(id){
+        let weeks = loadWeeks();
+        weeks = weeks.filter(w => w.id !== id);
+        // re-number weeks to keep sequential numbers
+        weeks = weeks.map((w,i)=> ({ ...w, week: i+1 }));
+        saveWeeks(weeks);
+      }
+
+      function downloadAllWeeks(){
+        const weeks = loadWeeks();
+        if(!weeks || weeks.length===0){ alert('Belum ada data minggu tersimpan.'); return; }
+        // build single CSV with separators
+        let out = '';
+        weeks.forEach(w => {
+          out += `Minggu ${w.week},Status: ${w.status},Selesai: ${w.done}/${w.total},Tanggal: ${new Date(w.date).toLocaleString()}\n`;
+          out += ['Hari','PushUp(10x5)','SitUp(10x5)','Catatan'].join(',') + '\n';
+          w.entries.forEach(e=>{
+            const push = e.push ? 'Selesai' : '';
+            const sit = e.sit ? 'Selesai' : '';
+            const note = (e.note||'').replace(/"/g,'""');
+            out += [capitalize(e.day), push, sit, `"${note}"`].join(',') + '\n';
+          });
+          out += '\n';
+        });
+        const blob = new Blob([out], {type:'text/csv'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'all_weeks_latihan.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      }
+
+      function clearAllWeeks(){
+        if(!confirm('Yakin hapus semua riwayat minggu?')) return;
+        localStorage.removeItem(WEEKS_KEY); renderWeeks();
+      }
+
+      // ---------- attach events ----------
+      document.addEventListener('DOMContentLoaded', function(){
+        // attach change listeners for checkboxes
+        items.forEach(id => {
+          const el = document.getElementById(id);
+          if(!el) return;
+          el.addEventListener('change', e => saveState(id, e.target.checked));
+        });
+        // attach input listeners for notes
+        noteIds.forEach(id => {
+          const el = document.getElementById(id);
+          if(!el) return;
+          el.addEventListener('input', e => saveNote(id, e.target.value));
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', function(){
+          if(!confirm('Yakin reset seluruh checklist minggu ini?')) return;
+          items.forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.checked = false;
+            localStorage.removeItem(storageKey(id));
+          });
+          noteIds.forEach(id => localStorage.removeItem(storageKey(id)));
+          updateProgress();
+        });
+
+        document.getElementById('saveWeekBtn').addEventListener('click', function(){
+          saveWeekSnapshot();
+        });
+
+        document.getElementById('exportBtn').addEventListener('click', function(){
+          // export current week (same as before)
+          const header = ['Hari','PushUp(10x5)','SitUp(10x5)','Catatan'];
+          const rows = [header.join(',')];
+          days.forEach(d => {
+            const push = localStorage.getItem(storageKey('push-'+d)) === '1' ? 'Selesai' : '';
+            const sit  = localStorage.getItem(storageKey('sit-'+d)) === '1' ? 'Selesai' : '';
+            const note = (localStorage.getItem(storageKey('note-'+d)) || '').replace(/"/g, '""');
+            rows.push([capitalize(d), push, sit, `"${note}"`].join(','));
+          });
+          const csv = rows.join('\n');
+          const blob = new Blob([csv], {type:'text/csv'});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'jadwal_latihan_minggu_ini.csv';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', function(){
+          let txt = 'Checklist Latihan (PushUp & SitUp 10x5)\n';
+          days.forEach(d => {
+            const push = localStorage.getItem(storageKey('push-'+d)) === '1' ? '✓' : '✗';
+            const sit  = localStorage.getItem(storageKey('sit-'+d)) === '1' ? '✓' : '✗';
+            const note = localStorage.getItem(storageKey('note-'+d)) || '';
+            txt += `${capitalize(d)} — PushUp: ${push}, SitUp: ${sit}` + (note ? `, Catatan: ${note}` : '') + '\n';
+          });
+          navigator.clipboard?.writeText(txt).then(() => {
+            alert('Ringkasan disalin ke clipboard');
+          }).catch(() => { alert('Gagal menyalin — browser mungkin tidak mendukung fitur ini.'); });
+        });
+
+        document.getElementById('helpBtn').addEventListener('click', function(){
+          alert('Cara pakai:\n1) Lakukan 10 repetisi × 5 set untuk Push Up dan/atau Sit Up.\n2) Setelah selesai, centang kotak yang sesuai.\n3) Tekan "Simpan Minggu" untuk menyimpan snapshot minggu ini.\n4) Di bagian Riwayat, tekan "Download Data" untuk mengunduh CSV minggu yang tersimpan.');
+        });
+
+        document.getElementById('downloadAllBtn').addEventListener('click', downloadAllWeeks);
+        document.getElementById('clearAllWeeksBtn').addEventListener('click', clearAllWeeks);
+
+        loadState();
+        renderWeeks();
+      });
+
+      // helper
+      function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    })();
+  </script></body>
+</html>
